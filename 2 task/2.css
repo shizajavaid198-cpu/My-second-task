@@ -1,0 +1,29 @@
+body{
+    font-family: 'Courier New', Courier, monospace;
+    margin:0;
+    background: white;
+}
+
+header{
+    background:#583030;
+    color:rgb(214, 207, 207);
+    padding:20px;
+    text-align:center;
+}
+
+nav a{
+    color:white;
+    margin:10px;
+    text-decoration:none;
+}
+
+section{
+    padding:30px;
+}
+
+footer{
+    background:#583030;
+    color:white;
+    text-align:center;
+    padding:15px;
+}
