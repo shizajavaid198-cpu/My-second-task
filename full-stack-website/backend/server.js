@@ -1,16 +1,21 @@
 const express = require("express");
 const cors = require("cors");
-
-const products = require("./products");
+const products = require("./products"); // Check karein ke file ka naam bilkul exact products.js ho (lowercase)
 
 const app = express();
 
-app.use(cors());
+// CORS Settings - Browser requests allow karne ke liye
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
+
 app.use(express.json());
 
-// Home
+// Home Route (Health Check)
 app.get("/", (req, res) => {
-  res.send("ShopEase Backend Running!");
+  res.send("ShopEase Backend is live and running!");
 });
 
 // Get all products
@@ -21,7 +26,7 @@ app.get("/api/products", (req, res) => {
 // Get single product
 app.get("/api/products/:id", (req, res) => {
   const product = products.find(
-    (p) => p.id === Number(req.params.id)
+    (p) => String(p.id) === String(req.params.id)
   );
 
   if (!product) {
@@ -33,7 +38,7 @@ app.get("/api/products/:id", (req, res) => {
   res.json(product);
 });
 
-// Orders
+// Orders Memory Array
 let orders = [];
 
 // Place an order
@@ -67,7 +72,8 @@ app.get("/api/orders", (req, res) => {
   res.json(orders);
 });
 
+// Port configuration for Live Hosting
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`ShopEase Backend running on port ${PORT}`);
 });

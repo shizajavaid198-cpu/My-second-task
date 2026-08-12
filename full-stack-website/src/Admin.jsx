@@ -3,11 +3,15 @@ import { useEffect, useState } from "react";
 function Admin() {
   const [orders, setOrders] = useState([]);
 
+  // 1. Apna Backend Live URL yahan paste karein (without trailing slash)
+  const BASE_URL = "https://your-backend-url.onrender.com"; 
+
   useEffect(() => {
-    fetch("http://localhost:5000/api/orders")
+    // Orders fetch karne ka code
+    fetch(`${BASE_URL}/api/orders`)
       .then((response) => response.json())
       .then((data) => setOrders(data))
-      .catch((error) => console.log(error));
+      .catch((error) => console.log("Error loading orders:", error));
   }, []);
 
   return (
@@ -59,18 +63,14 @@ function Admin() {
 
                 <span>
                   Rs.{" "}
-                  {Number(item.price).toLocaleString(
-                    "en-PK"
-                  )}
+                  {Number(item.price).toLocaleString("en-PK")}
                 </span>
               </div>
             ))}
 
             <h3 className="order-total">
               Total: Rs.{" "}
-              {Number(order.total).toLocaleString(
-                "en-PK"
-              )}
+              {Number(order.total).toLocaleString("en-PK")}
             </h3>
 
             <p className="order-date">
