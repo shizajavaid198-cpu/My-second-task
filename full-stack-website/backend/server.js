@@ -1,3 +1,4 @@
+module.exports = app;
 const express = require("express");
 const cors = require("cors");
 const products = require("./products"); // Check karein ke file ka naam bilkul exact products.js ho (lowercase)
