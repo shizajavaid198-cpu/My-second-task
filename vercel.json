@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "full-stack-website/package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "full-stack-website/dist" }
+    },
+    {
+      "src": "full-stack-website/api/products.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/full-stack-website/api/products.js"
+    },
+    {
+      "src": "(.*)",
+      "dest": "/full-stack-website/$1"
+    }
+  ]
+}
