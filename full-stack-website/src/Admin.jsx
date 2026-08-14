@@ -3,12 +3,9 @@ import { useEffect, useState } from "react";
 function Admin() {
   const [orders, setOrders] = useState([]);
 
-  // 1. Apna Backend Live URL yahan paste karein (without trailing slash)
-  const BASE_URL = "https://your-backend-url.onrender.com"; 
-
   useEffect(() => {
     // Orders fetch karne ka code
-    fetch(`${BASE_URL}/api/orders`)
+    fetch("/api/orders")
       .then((response) => response.json())
       .then((data) => setOrders(data))
       .catch((error) => console.log("Error loading orders:", error));
