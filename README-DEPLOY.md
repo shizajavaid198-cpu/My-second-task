@@ -26,3 +26,4 @@ npx vercel --prod
 Notes:
 - Serverless functions are located under `api/` at the repository root for Vercel.
 - Orders are kept in-memory (demo). For persistent storage, integrate a DB.
+Redeploy trigger: 2026-08-14T00:00:00Z
